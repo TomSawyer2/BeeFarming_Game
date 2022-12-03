@@ -1,1 +1,4 @@
 /Result/*
+*.class
+.idea
+BeeFarming_Game.iml
