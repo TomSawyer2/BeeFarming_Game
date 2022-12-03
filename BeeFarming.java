@@ -116,11 +116,11 @@ public class BeeFarming extends JFrame {
 				if (flag && begin) {
 					next();
 				}
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				// try {
+				// 	Thread.sleep(10);
+				// } catch (InterruptedException e) {
+				// 	e.printStackTrace();
+				// }
 			}
 		}
 	}
