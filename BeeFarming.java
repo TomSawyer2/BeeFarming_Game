@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 import java.io.*;
@@ -11,7 +10,7 @@ public class BeeFarming extends JFrame {
 	private static Image imgBG;
 	private Bee bee;
 	private int angle_damp = 0;
-	private boolean flag = false;
+	private boolean flag = true;
 	private boolean begin = true;
 
 	// 以下使用protected是为了满足可能被类BackGroundJP调用
@@ -35,9 +34,13 @@ public class BeeFarming extends JFrame {
 	Music music = new Music("flourish.mid");
 
 	private static Flower[] flws = new Flower[20];
+	private int totalRound = 0;
+	private String outputFilename = "";
 
 	/** 类构造函数，用于初始化整个游戏中的对象及设置 */
-	public BeeFarming() {
+	public BeeFarming(int totalRound, String outputFilename) {
+		this.totalRound = totalRound;
+		this.outputFilename = outputFilename;
 		setTitle("BeeFarming Game"); // 调用父类构造函数
 		imgBee = getToolkit().getImage("bee.png");
 		imgBee2 = getToolkit().getImage("bee2.png");
@@ -355,8 +358,20 @@ public class BeeFarming extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(args[0]);
-		new BeeFarming();
+		// java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename 解析参数
+		if (args.length != 2) {
+			System.out.println("参数错误！");
+			return;
+		}
+		String[] arg1 = args[0].split("=");
+		String[] arg2 = args[1].split("=");
+		if (arg1.length != 2 || arg2.length != 2) {
+			System.out.println("参数错误！");
+			return;
+		}
+		int totalRound = Integer.parseInt(arg1[1]);
+		String outputFilename = arg2[1];
+		new BeeFarming(totalRound, outputFilename);
 	}
 }
 

@@ -10,8 +10,10 @@ cp code/codeAHoney.java HoneyBee.java
 cp code/codeBHornet.java Hornet.java
 # 使用javac编译目录下所有java文件
 javac -encoding UTF-8 -d . *.java
-# java BeeFarming并传入totalRound和outputFilename
-xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename
+for ((i=1;i<=$totalRound;i++))
+do
+    xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename
+done
 
 # 删除编译后的class文件
 rm *.class
@@ -24,5 +26,10 @@ cp code/codeBHoney.java HoneyBee.java
 cp code/codeAHornet.java Hornet.java
 # 使用javac编译目录下所有java文件
 javac -encoding UTF-8 -d . *.java
-# java BeeFarming并传入totalRound和outputFilename
-xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$downOutputFilename
+for ((i=1;i<=$totalRound;i++))
+do
+    xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename
+done
+
+# javac *.java
+# java BeeFarming totalRound=2 outputFilename=output123
