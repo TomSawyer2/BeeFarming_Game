@@ -163,7 +163,10 @@ public class BeeFarming extends JFrame {
 					goals -= atime;
 				out.println("Final Goals: " + goals + ".");
 				out.close();
-
+				// 关闭窗口
+				dispose();
+				// 退出程序
+				System.exit(0);
 			} catch (FileNotFoundException e) {
 				System.out.println("Error:Cannot open file for writing.");
 			} catch (IOException e) {
