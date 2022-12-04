@@ -12,7 +12,7 @@ cp code/codeBHornet.java Hornet.java
 javac -encoding UTF-8 -d . *.java
 for ((i=1;i<=$totalRound;i++))
 do
-    xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename
+    xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename currentRound=$i
 done
 
 # 删除编译后的class文件
@@ -28,7 +28,7 @@ cp code/codeAHornet.java Hornet.java
 javac -encoding UTF-8 -d . *.java
 for ((i=1;i<=$totalRound;i++))
 do
-    xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename
+    xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename currentRound=$i
 done
 
 # javac *.java
