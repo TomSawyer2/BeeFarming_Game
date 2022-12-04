@@ -3,6 +3,7 @@
 totalRound=$totalRound
 upperOutputFilename=$upperOutputFilename
 downOutputFilename=$downOutputFilename
+actualRounds=$(($totalRound*2))
 
 # 将code文件夹中的codeAHoney.java复制到当前目录，并重命名为HoneyBee.java
 cp code/codeAHoney.java HoneyBee.java
@@ -12,6 +13,8 @@ cp code/codeBHornet.java Hornet.java
 javac -encoding UTF-8 -d . *.java
 for ((i=1;i<=$totalRound;i++))
 do
+    # 向/results/roundinfo文件写入当前回合数/actualRounds
+    echo "$i"/$actualRounds >> ./Result/roundinfo
     xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename currentRound=$i
 done
 
@@ -28,6 +31,8 @@ cp code/codeAHornet.java Hornet.java
 javac -encoding UTF-8 -d . *.java
 for ((i=1;i<=$totalRound;i++))
 do
+    # 向/results/roundinfo文件写入当前回合数/actualRounds
+    echo "$i"/$actualRounds >> ./Result/roundinfo
     xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename currentRound=$i
 done
 

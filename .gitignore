@@ -1,4 +1,4 @@
-/Result/*
+/Result/*.txt
 *.class
 .idea
 BeeFarming_Game.iml

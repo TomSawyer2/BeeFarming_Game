@@ -370,7 +370,7 @@ public class BeeFarming extends JFrame {
 		}
 		String[] arg1 = args[0].split("=");
 		String[] arg2 = args[1].split("=");
-		String[] arg3 = args[1].split("=");
+		String[] arg3 = args[2].split("=");
 		if (arg1.length != 2 || arg2.length != 2 || arg3.length != 2) {
 			System.out.println("参数错误！");
 			return;
