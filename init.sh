@@ -11,11 +11,12 @@ cp ./code/codeAHoney.java HoneyBee.java
 cp ./code/codeBHornet.java Hornet.java
 # 使用javac编译目录下所有java文件
 javac -encoding UTF-8 -d . *.java
+echo 0/$actualRounds >> ./Result/roundinfo
 for i in $(seq 1 $totalRound)
 do
-    # 向/results/roundinfo文件写入当前回合数/actualRounds
-    echo "$i"/$actualRounds >> ./Result/roundinfo
     xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename currentRound=$i
+    # 向/results/roundinfo文件写入当前回合数/actualRounds
+    echo $i/$actualRounds >> ./Result/roundinfo
 done
 
 # 删除编译后的class文件
@@ -31,9 +32,9 @@ cp ./code/codeAHornet.java Hornet.java
 javac -encoding UTF-8 -d . *.java
 for i in $(seq 1 $totalRound)
 do
-    # 向/results/roundinfo文件写入当前回合数/actualRounds
-    echo "$i"/$actualRounds >> ./Result/roundinfo
     xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename currentRound=$i
+    # 向/results/roundinfo文件写入(当前回合数totalRounds)+/actualRounds
+    echo $(($i+$totalRound))/$actualRounds >> ./Result/roundinfo
 done
 
 # javac *.java
