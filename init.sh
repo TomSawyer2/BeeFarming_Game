@@ -6,12 +6,12 @@ downOutputFilename=$downOutputFilename
 actualRounds=$(($totalRound*2))
 
 # 将code文件夹中的codeAHoney.java复制到当前目录，并重命名为HoneyBee.java
-cp code/codeAHoney.java HoneyBee.java
+cp ./code/codeAHoney.java HoneyBee.java
 # 将code文件夹中的codeBHornet.java复制到当前目录，并重命名为Hornet.java
-cp code/codeBHornet.java Hornet.java
+cp ./code/codeBHornet.java Hornet.java
 # 使用javac编译目录下所有java文件
 javac -encoding UTF-8 -d . *.java
-for ((i=1;i<=$totalRound;i++))
+for i in $(seq 1 $totalRound)
 do
     # 向/results/roundinfo文件写入当前回合数/actualRounds
     echo "$i"/$actualRounds >> ./Result/roundinfo
@@ -24,12 +24,12 @@ rm *.class
 rm HoneyBee.java
 rm Hornet.java
 # 将code文件夹中的codeBHoney.java复制到当前目录，并重命名为HoneyBee.java
-cp code/codeBHoney.java HoneyBee.java
+cp ./code/codeBHoney.java HoneyBee.java
 # 将code文件夹中的codeAHornet.java复制到当前目录，并重命名为Hornet.java
-cp code/codeAHornet.java Hornet.java
+cp ./code/codeAHornet.java Hornet.java
 # 使用javac编译目录下所有java文件
 javac -encoding UTF-8 -d . *.java
-for ((i=1;i<=$totalRound;i++))
+for i in $(seq 1 $totalRound)
 do
     # 向/results/roundinfo文件写入当前回合数/actualRounds
     echo "$i"/$actualRounds >> ./Result/roundinfo

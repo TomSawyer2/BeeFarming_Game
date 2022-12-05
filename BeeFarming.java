@@ -31,7 +31,7 @@ public class BeeFarming extends JFrame {
 	// private static String[] messages = new String[10];//蜜蜂的消息信箱，每个蜜蜂一个，用于相互通信
 	protected static int totalHoney = 0;
 	private static ArrayList<Flower> flowers = new ArrayList<Flower>();
-	Music music = new Music("flourish.mid");
+//	Music music = new Music("flourish.mid");
 
 	private static Flower[] flws = new Flower[20];
 	private int totalRound = 0;
@@ -140,31 +140,33 @@ public class BeeFarming extends JFrame {
 			}
 		}
 		time++;
-		music.play();
+//		music.play();
 		// 3000轮后结束程序
 		if (time == 4000 || count == 0 || countflower == 0) {
 			game = "GAME OVER";
-			music.stop();
+//			music.stop();
 			begin = false;
 			Beegoal = count * 50;
 			try {
 				File dirFile = new File("Result");
 				if (dirFile.exists() != true)
 					dirFile.mkdir();
-				PrintWriter out = new PrintWriter(
-						new FileWriter("Result\\result" + System.currentTimeMillis() + ".txt"));
-
-				out.println("totalHoney: " + BeeFarming.getHoney() + " kg;");
-				out.println("still alive Bees: " + BeeFarming.count + " bees;");
+				// 向./Result/Result.txt文件中写入游戏结果
+				String separator = System.getProperty("file.separator");
+				String filename = "./Result/" + separator + "result" + System.currentTimeMillis() + ".txt";
+				System.out.println(filename);
+				FileWriter fw = new FileWriter(filename, true);
+				fw.write("totalHoney: " + BeeFarming.getHoney() + " kg;\n");
+				fw.write("still alive Bees: " + BeeFarming.count + " bees;\n");
 				int atime = 200 - time / 20;
-				out.println("The time left: " + atime + " S;");
+				fw.write("The time left: " + atime + " S;\n");
 				int goals = BeeFarming.getHoney() + BeeFarming.Beegoal;
 				if (count > 0 && countflower == 0)
 					goals += atime;
 				if (count == 0 && countflower > 0)
 					goals -= atime;
-				out.println("Final Goals: " + goals + ".");
-				out.close();
+				fw.write("Final Goals: " + goals + ".");
+				fw.close();
 				// 关闭窗口
 				dispose();
 				// 退出程序
@@ -364,6 +366,7 @@ public class BeeFarming extends JFrame {
 
 	public static void main(String[] args) {
 		// java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename currentRound=$i 解析参数
+		System.out.println("totalRound=" + args[0] + " outputFilename=" + args[1] + " currentRound=" + args[2]);
 		if (args.length != 3) {
 			System.out.println("参数错误！");
 			return;
