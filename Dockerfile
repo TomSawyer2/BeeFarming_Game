@@ -12,9 +12,5 @@ RUN mkdir -p /home/game
 WORKDIR /home/game
 COPY . /home/game
 
-ENV totalRound=1
-ENV upperOutputFilename="upper"
-ENV downOutputFilename="lower"
-
 # 启动容器的方式 docker run --env totalRound=100 upperOutputFilename=upperOutput downOutputFilename=downOutput
 ENTRYPOINT ["sh", "init.sh"]
