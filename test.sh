@@ -4,6 +4,6 @@
 #for ((i=1;i<=totalRound;i++))
 #do
 #    echo "$i"/4 >> ./Result/roundinfo
-#    java BeeFarming totalRound=$totalRound outputFilename=output currentRound="$i"
+#    java BeeFarming outputFilename=output
 #done
 echo $1

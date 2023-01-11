@@ -14,7 +14,7 @@ javac -encoding UTF-8 -d . *.java
 echo 0/$actualRounds >> ./Result/roundinfo
 for i in $(seq 1 $totalRound)
 do
-    xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename currentRound=$i
+    xvfb-run -a java BeeFarming outputFilename=$upperOutputFilename
     # 向/results/roundinfo文件写入当前回合数/actualRounds
     echo $i/$actualRounds >> ./Result/roundinfo
 done
@@ -32,10 +32,10 @@ cp ./code/codeAHornet.java Hornet.java
 javac -encoding UTF-8 -d . *.java
 for i in $(seq 1 $totalRound)
 do
-    xvfb-run -a java BeeFarming totalRound=$totalRound outputFilename=$upperOutputFilename currentRound=$i
+    xvfb-run -a java BeeFarming outputFilename=$upperOutputFilename
     # 向/results/roundinfo文件写入(当前回合数totalRounds)+/actualRounds
     echo $(($i+$totalRound))/$actualRounds >> ./Result/roundinfo
 done
 
 # javac *.java
-# java BeeFarming totalRound=2 outputFilename=output123
+# java BeeFarming outputFilename=output123
