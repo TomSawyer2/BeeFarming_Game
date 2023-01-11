@@ -32,7 +32,7 @@ cp ./code/codeAHornet.java Hornet.java
 javac -encoding UTF-8 -d . *.java
 for i in $(seq 1 $totalRound)
 do
-    xvfb-run -a java BeeFarming outputFilename=$upperOutputFilename
+    xvfb-run -a java BeeFarming outputFilename=$downOutputFilename
     # 向/results/roundinfo文件写入(当前回合数totalRounds)+/actualRounds
     echo $(($i+$totalRound))/$actualRounds >> ./Result/roundinfo
 done
