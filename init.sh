@@ -4,6 +4,7 @@ totalRound=$totalRound
 upperOutputFilename=$upperOutputFilename
 downOutputFilename=$downOutputFilename
 actualRounds=$(($totalRound*2))
+BF_ID=$BF_ID
 
 # 将code文件夹中的codeAHoney.java复制到当前目录，并重命名为HoneyBee.java
 cp ./code/codeAHoney.java HoneyBee.java
@@ -16,7 +17,8 @@ for i in $(seq 1 $totalRound)
 do
     xvfb-run -a java BeeFarming outputFilename=$upperOutputFilename
     # 向/results/roundinfo文件写入当前回合数/actualRounds
-    echo $i/$actualRounds >> ./Result/roundinfo
+    # echo $i/$actualRounds >> ./Result/roundinfo
+    python updateRedis.py $BF_ID $i
 done
 
 # 删除编译后的class文件
@@ -34,7 +36,8 @@ for i in $(seq 1 $totalRound)
 do
     xvfb-run -a java BeeFarming outputFilename=$downOutputFilename
     # 向/results/roundinfo文件写入(当前回合数totalRounds)+/actualRounds
-    echo $(($i+$totalRound))/$actualRounds >> ./Result/roundinfo
+    # echo $(($i+$totalRound))/$actualRounds >> ./Result/roundinfo
+    python updateRedis.py $BF_ID $(($i+$totalRound))
 done
 
 # javac *.java
