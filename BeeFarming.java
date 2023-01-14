@@ -150,7 +150,6 @@ public class BeeFarming extends JFrame {
 				// 向./Result/Result.txt文件中写入游戏结果
 				String separator = System.getProperty("file.separator");
 				String filename = "./Result/" + separator + outputFilename;
-				System.out.println(filename);
 				FileWriter fw = new FileWriter(filename, true);
 //				fw.write("totalHoney: " + BeeFarming.getHoney() + " kg;\n");
 //				fw.write("still alive Bees: " + BeeFarming.count + " bees;\n");

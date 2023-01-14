@@ -12,7 +12,6 @@ cp ./code/codeAHoney.java HoneyBee.java
 cp ./code/codeBHornet.java Hornet.java
 # 使用javac编译目录下所有java文件
 javac -encoding UTF-8 -d . *.java
-echo 0/$actualRounds >> ./Result/roundinfo
 for i in $(seq 1 $totalRound)
 do
     xvfb-run -a java BeeFarming outputFilename=$upperOutputFilename

@@ -7,4 +7,3 @@ import redis
 r = redis.Redis(host="172.17.0.1", port=6380, db=1)
 # 更新redis中的currentRound
 r.set("bf:key" + sys.argv[1], sys.argv[2])
-print("update redis success", sys.argv[1], sys.argv[2], "get: ", r.get("bf:key" + sys.argv[1]))
