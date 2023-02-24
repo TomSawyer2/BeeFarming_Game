@@ -291,6 +291,31 @@ public class BeeFarming extends JFrame {
 		// 根据蜜蜂id，查询到相应的花，减去相应花的花蜜
 		int bx = status[id].x;
 		int by = status[id].y;
+		int bonus = 1;
+
+		// 如果视野内出现黄蜂，则采蜜双倍
+		String strVision = BeeFarming.search(id);
+		// 蜜蜂看到其他蜂
+		if (strVision.indexOf('+') != -1) {
+			int idx1, i;
+			String str_temp = strVision.substring(strVision.indexOf('+'));
+			idx1 = str_temp.indexOf(',');
+			i = Integer.parseInt(str_temp.substring(str_temp.indexOf('(')+1, idx1));
+			if (i == 9) {
+				bonus = 2;
+			} else {
+				int x1, id2;
+				String str_temp2 = str_temp.substring(str_temp.indexOf(')'));
+				if (str_temp2.indexOf('+') != -1){
+					x1 = str_temp2.indexOf(',');
+					id2 = Integer.parseInt(str_temp2.substring(str_temp2.indexOf('(') + 1, x1));
+					if (id2 == 9) {
+						bonus = 2;
+					}
+				}
+			}
+		}
+
 		Iterator<Flower> it = flowers.iterator();
 		while (it.hasNext()) {
 			Flower f = it.next();
@@ -299,16 +324,17 @@ public class BeeFarming extends JFrame {
 				int fy = (int) (f.getPosition().getY());
 				int distance = (int) (Math.pow(bx - fx, 2) + Math.pow(by - fy, 2));
 				if (distance <= 4) {
-					boolean more = f.consume(1);// 花蜜减少
-					totalHoney++;// 总采集花蜜增
+					boolean more = f.consume(1 * bonus);// 花蜜减少
+					totalHoney += 1 * bonus;// 总采集花蜜增
 					if (more)
 						return 1;// 1代表还有蜜可采
 					else
-						countflower--;
+						countflower --;
 					return 0;// 这次是最后一点了，花蜜已经采完
 				}
 			}
 		}
+		bonus = 1;
 		return -1;// 附近没有花
 	}
 
